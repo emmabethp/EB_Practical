@@ -5,11 +5,11 @@ output: rmarkdown::github_document
 
 Dylan Homan
 
-# Practical output:  Master script
+# Practical output: Master script
 
 ## Source functions, get data and plot
 
-First we'll _source()_ (i.e. "run all code in") the scripts with the functions we made. Then we'll set the URL, read in the data with _download.NDVI()_, and plot it with _plot.NDVI()_.
+First we'll *source()* (i.e. "run all code in") the scripts with the functions we made. Then we'll set the URL, read in the data with *download.NDVI()*, and plot it with *plot.NDVI()*.
 
 ```{r}
 ## Load required functions by running source() on the individual function files
@@ -85,7 +85,6 @@ plot.NDVI(dat = dat, fit = fit_negexpS)
 
 ```
 
-
 ```{r}
 # print model summary
 summary(fit_negexpS)
@@ -103,9 +102,9 @@ Lots more parameters...
 
 ## Compare NLS models using ANOVA
 
-Modelers often want to know which of a set of models are better. One way to do this when comparing nested* models using least squares is using analysis of variance (ANOVA). In this case the `anova()` function will take the model objects as arguments, and return an ANOVA testing whether the full model results in a significant reduction in the residual sum of squares (and thus is better at capturing the data), returning an F-statistic, Degrees of Freedom (the difference in the number of parameters between the models) and p-value.
+Modelers often want to know which of a set of models are better. One way to do this when comparing nested\* models using least squares is using analysis of variance (ANOVA). In this case the `anova()` function will take the model objects as arguments, and return an ANOVA testing whether the full model results in a significant reduction in the residual sum of squares (and thus is better at capturing the data), returning an F-statistic, Degrees of Freedom (the difference in the number of parameters between the models) and p-value.
 
-*i.e. one model is a subset of the other, as in our case
+\*i.e. one model is a subset of the other, as in our case
 
 ```{r}
 anova(fit_negexp, fit_negexpS)
@@ -141,7 +140,6 @@ lines(dat$age, pred.negexp(fit_negexpMLE$par,dat$age), col = 'skyblue', lwd = 3)
 
 ```
 
-
 ```{r}
 fit_negexpMLE
 ```
@@ -175,7 +173,7 @@ fit_negexpMLES
 
 Note that we can't compare our MLE models using ANOVA because our custom functions do not return full model fits like the `nls()` function - only the parameter estimates, negative log-likelihoods and a few other diagnostics.
 
-Another way to compare models (and probably the most common) is using the Akaike information criterion (AIC), which is an estimator of prediction error (i.e. relative quality) of statistical models for a given set of data. 
+Another way to compare models (and probably the most common) is using the Akaike information criterion (AIC), which is an estimator of prediction error (i.e. relative quality) of statistical models for a given set of data.
 
 The formula for the Akaike information criterion is:
 
@@ -183,8 +181,8 @@ $AIC = 2K -2(ln(L))$
 
 Where:
 
-- $K$ = the number of estimated parameters in the model
-- $L$ = maximum value of the likelihood function for the model
+-   $K$ = the number of estimated parameters in the model
+-   $L$ = maximum value of the likelihood function for the model
 
 Since we have our negative log likelihoods (i.e. $-ln(L)$ in the formula above), we can calculate the AICs and compare them.
 
@@ -212,7 +210,7 @@ AIC_simple - AIC_full
 
 <br>
 
-The nice thing about AIC is that the models you compare do not have to be nested like they do for ANOVA, as long as the data are the same. There are a few other constraints however... 
+The nice thing about AIC is that the models you compare do not have to be nested like they do for ANOVA, as long as the data are the same. There are a few other constraints however...
 
 Here are the AIC scores for our pair of NLS models:
 
@@ -229,7 +227,6 @@ You'll notice that these are completely different to the AICs for the MLE models
 > Question 6: Why is it not okay to compare the AIC of these NLS models with the AIC of the MLE models? Hint: type `?AIC` into the R console and do some reading. (3 marks)
 
 <br>
-
 
 ## Going Bayesian
 
@@ -317,10 +314,9 @@ And look at the distributions of the posterior estimates.
 plot(fit_negexpBS, ask = F)
 ```
 
-
 <br>
 
-> Question 8: Assuming the full Bayesian model is the best model, would any of the parameter estimates of any of the models be significantly unlikely to be true (if you were to apply the frequentist criterion of P < 0.05), and if so, which ones? (3 marks)
+> Question 8: Assuming the full Bayesian model is the best model, would any of the parameter estimates of any of the models be significantly unlikely to be true (if you were to apply the frequentist criterion of P \< 0.05), and if so, which ones? (3 marks)
 
 <br>
 
